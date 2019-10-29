@@ -1,0 +1,30 @@
+.LoginNav {
+	display: flex;
+	justify-content: space-between;
+	background-color: #00e1ff;
+	padding: 0.5rem 0;
+	font-family: "Oswald", sans-serif;
+	.LogoBox {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		max-width: 500px;
+		flex-grow: 3;
+
+		img {
+			height: 50px;
+		}
+	}
+
+	.LoginBox {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		max-width: 300px;
+		flex-grow: 1;
+	}
+
+	a:hover {
+		color: #fff;
+	}
+}
