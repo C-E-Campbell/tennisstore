@@ -10,9 +10,43 @@
 	width: 100%;
 }
 .store-item {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-content: center;
+	padding: 1rem;
 	height: 400px;
 	width: 300px;
 	border-radius: 4px;
 	justify-self: center;
-	border: 1px solid #ccc;
+	border: 1px solid rgb(223, 223, 223);
+	position: relative;
+	color: rgb(122, 122, 122);
+	font-family: "Oswald", sans-serif;
+
+	&:hover {
+		cursor: pointer;
+	}
+	.store-item-img {
+		height: 250px;
+	}
+	button {
+		width: 30%;
+		margin: 0 auto;
+	}
+	i {
+		position: absolute;
+		top: 15px;
+		right: 15px;
+		color: #ccc;
+
+		&:hover {
+			color: rgb(209, 57, 82);
+		}
+	}
+
+	.store-item-info {
+		display: flex;
+		justify-content: space-between;
+	}
 }
