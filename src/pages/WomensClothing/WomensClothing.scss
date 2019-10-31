@@ -1,0 +1,14 @@
+header {
+	height: 60px;
+	background-color: #00e1ff;
+	display: flex;
+	align-items: center;
+	font-family: "Oswald", sans-serif;
+	a {
+		padding-left: 1rem;
+		font-size: 1.5rem;
+		&:hover {
+			color: #fff;
+		}
+	}
+}
