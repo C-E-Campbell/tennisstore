@@ -27,7 +27,7 @@ export default function Special() {
 					<img
 						data-aos='fade-right'
 						data-aos-duration='800'
-						data-aos-once='false'
+						data-aos-once='true'
 						data-aos-delay='200'
 						src={menSport}
 						alt='mens sportswear'
@@ -37,7 +37,7 @@ export default function Special() {
 					<img
 						data-aos='fade-up'
 						data-aos-duration='700'
-						data-aos-once='false'
+						data-aos-once='true'
 						data-aos-delay='400'
 						src={womenSport}
 						alt='womens sportswear'

@@ -11,6 +11,7 @@
 	.aboutText {
 		width: 100%;
 		background: url("../../assets//black-min.jpg");
+
 		font-family: "Oswald", sans-serif;
 		align-items: center;
 		background-size: cover;
@@ -48,5 +49,11 @@
 				color: #fff;
 			}
 		}
+	}
+}
+
+@media (max-width: 800px) {
+	.aboutText {
+		background-position: center;
 	}
 }

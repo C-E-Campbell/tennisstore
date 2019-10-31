@@ -7,7 +7,7 @@ export default function ScrollOver() {
 				className={style.heading}
 				data-aos-delay='200'
 				data-aos='fade-up'
-				data-aos-once='false'
+				data-aos-once='true'
 			>
 				IT'S GAME TIME
 			</h2>
