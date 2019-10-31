@@ -1,0 +1,18 @@
+.store-grid {
+	display: grid;
+	grid-template-columns: repeat(3, 1fr);
+	grid-template-rows: repeat(2, 1fr);
+	grid-gap: 1rem;
+	justify-content: center;
+	align-items: center;
+	max-width: 1060px;
+	margin: 3rem auto;
+	width: 100%;
+}
+.store-item {
+	height: 400px;
+	width: 300px;
+	border-radius: 4px;
+	justify-self: center;
+	border: 1px solid #ccc;
+}

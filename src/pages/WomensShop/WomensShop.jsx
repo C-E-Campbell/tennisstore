@@ -18,16 +18,16 @@ export default class WomensShop extends Component {
 					<div className='shop-hero'>
 						<h2>Shop Womens Styles</h2>
 					</div>
-					<Link to='/womensclothing' className='store-boxes'>
-						<div>
+					<div className='store-boxes'>
+						<Link to='/womensclothing'>
 							<img src={WomenShop} alt='shop women' />
-							<h3>Clothing</h3>
-						</div>
-						<div>
+							{/* <h3>Clothing</h3> */}
+						</Link>
+						<Link to='/womensclothing'>
 							<img src={Shoe} alt='shop women' />
-							<h3>Shoes</h3>
-						</div>
-					</Link>
+							{/* <h3>Shoes</h3> */}
+						</Link>
+					</div>
 					<Footer />
 				</section>
 			</div>
