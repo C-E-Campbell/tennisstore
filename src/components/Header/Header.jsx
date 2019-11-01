@@ -14,6 +14,7 @@ export default class Header extends Component {
 			hoverGear: false
 		};
 	}
+
 	render() {
 		return (
 			<div className='header-div'>
