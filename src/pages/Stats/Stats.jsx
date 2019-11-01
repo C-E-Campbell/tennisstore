@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
-
+import Match from "../../components/Matches/Matches";
 import "./Stats.scss";
 import StatItem from "../../components/StatItem/StatItem";
 import { Link } from "react-router-dom";
@@ -43,17 +43,32 @@ export default class Stats extends Component {
 	}
 
 	getTourney = async () => {
-		const tourneyResults = await axios.get(
-			"https://cors-anywhere.herokuapp.com/http://api.sportradar.us/tennis-t2/en/tournaments/sr:tournament:2555/schedule.json?api_key=29n49vy68mxscutdge8ykpax"
-		);
-		console.log(tourneyResults.data);
-	};
-
-	getDoubles = async () => {
-		const doubleResults = await axios.get(
-			"https://cors-anywhere.herokuapp.com/http://api.sportradar.us/tennis-t2/en/double_teams/rankings.json?api_key=29n49vy68mxscutdge8ykpax"
-		);
-		console.log(doubleResults.data);
+		if (this.state.tourneySchedule.length) {
+			this.setState({
+				showWomen: false,
+				showMen: false,
+				showDoublesMen: false,
+				showDoublesWomen: false,
+				showTourney: true,
+				loading: false
+			});
+		} else {
+			this.setState({
+				loading: true
+			});
+			const tourneyResults = await axios.get(
+				"https://cors-anywhere.herokuapp.com/http://api.sportradar.us/tennis-t2/en/schedules/live/schedule.json?api_key=29n49vy68mxscutdge8ykpax"
+			);
+			this.setState({
+				tourneySchedule: tourneyResults.data.sport_events,
+				showWomen: false,
+				showMen: false,
+				showDoublesMen: false,
+				showDoublesWomen: false,
+				showTourney: true,
+				loading: false
+			});
+		}
 	};
 
 	render() {
@@ -102,6 +117,19 @@ export default class Stats extends Component {
 					played={player.tournaments_played}
 					points={player.points}
 					nationality={player.player.nationality}
+				/>
+			);
+		});
+
+		const mappedTournies = this.state.tourneySchedule.map((match, index) => {
+			return (
+				<Match
+					key={index}
+					name={match.season.name}
+					start={match.season.start_date}
+					end={match.season.end_date}
+					country={match.venue.country_name}
+					city={match.venue.city_name}
 				/>
 			);
 		});
@@ -166,7 +194,13 @@ export default class Stats extends Component {
 						>
 							Doubles Rankings Men
 						</h4>
-						<h4>Tournament Schedule</h4>
+						<h4
+							onClick={() => {
+								this.getTourney();
+							}}
+						>
+							Tournament Schedule
+						</h4>
 					</div>
 					{this.state.loading ? (
 						<div className='ui segment myLoader'>
@@ -181,6 +215,7 @@ export default class Stats extends Component {
 							{this.state.showMen ? mappedMens : null}
 							{this.state.showDoublesMen ? mappedDoublesMens : null}
 							{this.state.showDoublesWomen ? mappedDoublesWomens : null}
+							{this.state.showTourney ? mappedTournies : null}
 						</div>
 					)}
 				</div>
