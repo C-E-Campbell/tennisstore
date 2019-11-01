@@ -1,0 +1,25 @@
+.stat-item {
+	margin: 1rem;
+	border: 1px solid #ccc;
+	width: 100%;
+	max-width: 300px;
+	padding: 1rem 2.5rem;
+
+	.player-title {
+		display: flex;
+		width: 100%;
+		justify-content: flex-start;
+		margin: 0 auto;
+		font-weight: 900;
+		:nth-child(1) {
+			margin-right: 10px;
+		}
+	}
+
+	.player-info {
+		margin-top: 1.5rem;
+		div {
+			margin: 0.5rem 0;
+		}
+	}
+}

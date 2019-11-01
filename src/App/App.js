@@ -11,12 +11,12 @@ function App() {
 	return (
 		<Switch>
 			<Route component={Home} exact path={"/"} />
-			<Route component={Register} exact path={"/register"} />
-			<Route component={Login} exact path={"/signin"} />
-			<Route component={Stats} exact path={"/stats"} />
-			<Route component={WomensShop} exact path={"/womens"} />
-			<Route component={WomensShop} exact path={"/womensshoes"} />
-			<Route component={WomensClothing} exact path={"/womensclothing"} />
+			<Route component={Register} path={"/register"} />
+			<Route component={Login} path={"/signin"} />
+			<Route component={Stats} path={"/stats"} />
+			<Route component={WomensShop} path={"/womens"} />
+			<Route component={WomensShop} path={"/womensshoes"} />
+			<Route component={WomensClothing} path={"/womensclothing"} />
 		</Switch>
 	);
 }
