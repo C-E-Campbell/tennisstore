@@ -8,6 +8,7 @@ const app = express();
 // Controllers
 const test = require("./controllers/testCtrl");
 const inventory = require("./controllers/inventoryCtrl");
+const auth = require("./controllers/authCtrl");
 
 massive(CONNECTION_STRING).then(db => {
 	app.set("db", db);
@@ -28,5 +29,8 @@ app.use(
 // End Points
 app.get("/api/test", test.test);
 app.get("/api/inventory", inventory.getAllInventory);
+app.post("/api/register", auth.register);
+app.post("/api/register", auth.login);
+app.delete("/api/logout", auth.logout);
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
