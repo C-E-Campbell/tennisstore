@@ -10,7 +10,6 @@ export default class Header extends Component {
 		this.state = {
 			hoverMen: false,
 			hoverWomen: false,
-			hoverKids: false,
 			hoverGear: false
 		};
 	}
@@ -26,7 +25,7 @@ export default class Header extends Component {
 								this.setState({
 									hoverMen: true,
 									hoverWomen: false,
-									hoverKids: false,
+
 									hoverGear: false
 								});
 							}}
@@ -39,7 +38,7 @@ export default class Header extends Component {
 								this.setState({
 									hoverMen: false,
 									hoverWomen: true,
-									hoverKids: false,
+
 									hoverGear: false
 								});
 							}}
@@ -47,25 +46,13 @@ export default class Header extends Component {
 						>
 							Women
 						</Link>
+
 						<Link
 							onMouseEnter={() => {
 								this.setState({
 									hoverMen: false,
 									hoverWomen: false,
-									hoverKids: true,
-									hoverGear: false
-								});
-							}}
-							to='/kids'
-						>
-							Kids
-						</Link>
-						<Link
-							onMouseEnter={() => {
-								this.setState({
-									hoverMen: false,
-									hoverWomen: false,
-									hoverKids: false,
+
 									hoverGear: true
 								});
 							}}

@@ -1,21 +1,22 @@
 import React from "react";
 import style from "./Special.module.scss";
 import menSport from "../../assets/menNoBg-min.png";
+import { Link } from "react-router-dom";
 import womenSport from "../../assets/womenNoBg-min.png";
 export default function Special() {
 	return (
 		<section className={style.Special}>
 			<h2>SHOP</h2>
 			<div className={style.clothingBox}>
-				<div className={style.clothing}>
+				<Link to='/womens' className={style.clothing}>
 					<h3>Womens</h3>
-				</div>
-				<div className={style.clothing}>
+				</Link>
+				<Link to='/mens' className={style.clothing}>
 					<h3>Mens</h3>
-				</div>
-				<div className={style.clothing}>
-					<h3>Kids</h3>
-				</div>
+				</Link>
+				<Link to='/gear' className={style.clothing}>
+					<h3>Gear</h3>
+				</Link>
 			</div>
 			<div className={style.sportsWear}>
 				<div className={style.quote}>
