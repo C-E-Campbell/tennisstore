@@ -1,6 +1,10 @@
+.stats-page {
+	position: relative;
+}
 .stats-container {
 	display: flex;
 	font-family: "Oswald", sans-serif;
+	position: relative;
 }
 .stats-header {
 	height: 60px;
@@ -18,7 +22,8 @@
 }
 
 .stat-links {
-	width: 30%;
+	width: 25%;
+
 	padding: 1rem;
 	background-color: rgb(255, 255, 255);
 	border-right: 1px solid #ccc;
@@ -37,11 +42,10 @@
 	}
 }
 .stat-data {
-	width: 70%;
+	width: 75%;
 	height: 100%;
 	display: flex;
 	justify-content: center;
-	align-items: center;
 	flex-direction: column;
 
 	.data-container {

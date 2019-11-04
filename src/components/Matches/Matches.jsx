@@ -7,10 +7,14 @@ export default function Matches(props) {
 				<h1 className='match-name'>{props.name}</h1>
 			</div>
 			<div className='match-location'>
-				{props.city},{props.country}
+				{props.city ? (
+					<div>
+						{props.city}, {props.country}
+					</div>
+				) : null}
 			</div>
-			<div>
-				<div>Start: {props.start}</div>
+			<div className='match-dates'>
+				<div className='start'>Start: {props.start}</div>
 				<div>End: {props.end}</div>
 			</div>
 		</div>
