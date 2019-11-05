@@ -5,7 +5,7 @@ export default function StoreGrid() {
 	return (
 		<div className='store-grid'>
 			<div className='store-item'>
-				<i class='fas fa-heart'></i>
+				<i className='fas fa-heart'></i>
 				<img
 					className='store-item-img'
 					src='https://www.tennisexpress.com/prodimages/84647-DEFAULT-l.jpg'

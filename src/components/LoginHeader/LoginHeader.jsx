@@ -24,17 +24,20 @@ class LoginHeader extends React.Component {
 					<img src={adidas} alt='adidas' />
 					<img src={prince} alt='prince' />
 				</div>
-				<div className={style.LoginBox}>
-					<Link to='/stats'>STATS & MATCHES</Link>
-					{this.props.currentUser ? (
+
+				{/* this ternary switches between signin/register & logout links based on if there is a user */}
+				{!this.props.currentUser ? (
+					<div className={style.LoginBox}>
+						<Link to='/stats'>STATS & MATCHES</Link>
+						<Link to='/signin'>Sign In</Link>
+						<Link to='/register'>Register</Link>
+					</div>
+				) : (
+					<div className={style.LoginBox}>
+						<Link to='/stats'>STATS & MATCHES</Link>
 						<button onClick={() => this.logout()}>Logout</button>
-					) : (
-						<div>
-							<Link to='/signin'>Sign In</Link>
-							<Link to='/register'>Register</Link>
-						</div>
-					)}
-				</div>
+					</div>
+				)}
 			</nav>
 		);
 	}
