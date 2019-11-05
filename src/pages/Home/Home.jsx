@@ -7,8 +7,16 @@ import Special from "../../components/Special/Special";
 import Email from "../../components/Email/Email";
 import ScrollOver from "../../components/ScrollOver/ScrollOver";
 import Footer from "../../components/Footer/Footer";
+import { connect } from "react-redux";
+import { getInventory } from "../../redux/actions";
+import axios from "axios";
 
-export default class Home extends Component {
+class Home extends Component {
+	async componentDidMount() {
+		const items = await axios.get("/api/inventory");
+		this.props.getInventory(items.data);
+	}
+
 	render() {
 		return (
 			<div>
@@ -24,3 +32,16 @@ export default class Home extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => {
+	return state;
+};
+
+const mapDispatchToProps = {
+	getInventory
+};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Home);
