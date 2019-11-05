@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import "./Login.scss";
+import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
-export default class Login extends Component {
+class Login extends Component {
 	constructor() {
 		super();
 		this.state = {
@@ -63,3 +64,14 @@ export default class Login extends Component {
 		);
 	}
 }
+
+const mapStateToProps = state => {
+	return state;
+};
+
+const mapDispatchToProps = {};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Login);

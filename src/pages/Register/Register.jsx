@@ -1,8 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { register } from "../../redux/actions";
 import "./Register.scss";
 import { Link } from "react-router-dom";
 import axios from "axios";
+
 class Register extends Component {
 	constructor() {
 		super();
@@ -18,9 +20,8 @@ class Register extends Component {
 			email: this.state.email,
 			password: this.state.password
 		});
-
-		this.props.this.props.history.push("/");
-		console.log(registerUser.data);
+		this.props.register(registerUser.data);
+		// this.props.history.push("/");
 	};
 
 	componentWillUnmount() {
@@ -64,13 +65,11 @@ class Register extends Component {
 		);
 	}
 }
-const mapStateToProps = state => {
-	return {
-		state: state
-	};
-};
+const mapStateToProps = state => {};
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+	register
+};
 
 export default connect(
 	mapStateToProps,

@@ -1,12 +1,12 @@
 import { Link } from "react-router-dom";
 import styles from "./Header.module.scss";
 import cartIcon from "../../assets/cart-min.png";
-
+import { connect } from "react-redux";
 import React, { Component } from "react";
 
-export default class Header extends Component {
-	constructor() {
-		super();
+class Header extends Component {
+	constructor(props) {
+		super(props);
 		this.state = {
 			hoverMen: false,
 			hoverWomen: false,
@@ -61,6 +61,11 @@ export default class Header extends Component {
 							Gear
 						</Link>
 					</div>
+					<div>
+						{this.props.user.currentUser
+							? `Welcome, this.props.user.currentUser.email`
+							: null}
+					</div>
 					<div className={styles.CartBox}>
 						<img src={cartIcon} alt='cart' />
 					</div>
@@ -109,3 +114,11 @@ export default class Header extends Component {
 		);
 	}
 }
+const mapStateToProps = state => {
+	return state;
+};
+
+export default connect(
+	mapStateToProps,
+	null
+)(Header);

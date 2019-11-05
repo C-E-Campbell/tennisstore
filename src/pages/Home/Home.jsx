@@ -7,6 +7,7 @@ import Special from "../../components/Special/Special";
 import Email from "../../components/Email/Email";
 import ScrollOver from "../../components/ScrollOver/ScrollOver";
 import Footer from "../../components/Footer/Footer";
+
 export default class Home extends Component {
 	render() {
 		return (

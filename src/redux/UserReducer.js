@@ -2,12 +2,18 @@ const initialState = {
 	currentUser: null
 };
 
-const REGISTER_USER = "REGISTER_USER";
+export const REGISTER_USER = "REGISTER_USER";
+export const LOGIN_USER = "LOGIN_USER";
 
 const userReducer = (state = initialState, action) => {
 	const { type, payload } = action;
 	switch (type) {
 		case REGISTER_USER:
+			return {
+				...state,
+				currentUser: payload
+			};
+		case LOGIN_USER:
 			return {
 				...state,
 				currentUser: payload
