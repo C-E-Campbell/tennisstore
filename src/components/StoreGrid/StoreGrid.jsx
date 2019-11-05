@@ -1,82 +1,20 @@
 import React from "react";
 import "./StoreGrid.scss";
-
-export default function StoreGrid() {
-	return (
-		<div className='store-grid'>
-			<div className='store-item'>
-				<i className='fas fa-heart'></i>
-				<img
-					className='store-item-img'
-					src='https://www.tennisexpress.com/prodimages/84647-DEFAULT-l.jpg'
-					alt='menswhitetee'
+import StoreItem from "../StoreItem/StoreItem";
+export default function StoreGrid(props) {
+	const mappedItems = props.clothing.map(
+		({ image, item_id, price, name, description }) => {
+			return (
+				<StoreItem
+					className='store-item'
+					key={item_id}
+					image={image}
+					price={price}
+					name={name}
+					description={description}
 				/>
-				<div className='store-item-info'>
-					<h2>Dont buy this, its cheap material</h2>
-					<h3>450.98</h3>
-				</div>
-			</div>
-
-			<div className='store-item'>
-				<i className='fas fa-heart'></i>
-				<img
-					className='store-item-img'
-					src='https://www.tennisexpress.com/prodimages/87182-DEFAULT-l.jpg'
-					alt='menswhitetee'
-				/>
-				<div className='store-item-info'>
-					<h2>Dont buy this, its cheap material</h2>
-					<h3>450.98</h3>
-				</div>
-			</div>
-			<div className='store-item'>
-				<i className='fas fa-heart'></i>
-				<img
-					className='store-item-img'
-					src='https://www.tennisexpress.com/prodimages/87323-DEFAULT-l.jpg'
-					alt='menswhitetee'
-				/>
-				<div className='store-item-info'>
-					<h2>Dont buy this, its cheap material</h2>
-					<h3>450.98</h3>
-				</div>
-			</div>
-			<div className='store-item'>
-				<i className='fas fa-heart'></i>
-				<img
-					className='store-item-img'
-					src='https://www.tennisexpress.com/prodimages/83448-DEFAULT-l.jpg'
-					alt='menswhitetee'
-				/>
-				<div className='store-item-info'>
-					<h2>Dont buy this, its cheap material</h2>
-					<h3>450.98</h3>
-				</div>
-			</div>
-			<div className='store-item'>
-				<i className='fas fa-heart'></i>
-				<img
-					className='store-item-img'
-					src='https://www.tennisexpress.com/prodimages/77100-DEFAULT-l.jpg'
-					alt='menswhitetee'
-				/>
-				<div className='store-item-info'>
-					<h2>Dont buy this, its cheap material</h2>
-					<h3>450.98</h3>
-				</div>
-			</div>
-			<div className='store-item'>
-				<i className='fas fa-heart'></i>
-				<img
-					className='store-item-img'
-					src='https://www.tennisexpress.com/prodimages/77097-DEFAULT-l.jpg'
-					alt='menswhitetee'
-				/>
-				<div className='store-item-info'>
-					<h2>Dont buy this, its cheap material</h2>
-					<h3>450.98</h3>
-				</div>
-			</div>
-		</div>
+			);
+		}
 	);
+	return <div className='store-grid'>{mappedItems}</div>;
 }

@@ -22,7 +22,6 @@ class Login extends Component {
 		});
 		this.props.login(registerUser.data);
 		this.props.history.push("/");
-		console.log(registerUser.data);
 	};
 
 	componentWillUnmount() {
