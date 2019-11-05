@@ -63,7 +63,7 @@ class Header extends Component {
 					</div>
 					<div>
 						{this.props.user.currentUser
-							? `Welcome, this.props.user.currentUser.email`
+							? `Welcome, ${this.props.user.currentUser.email}`
 							: null}
 					</div>
 					<div className={styles.CartBox}>

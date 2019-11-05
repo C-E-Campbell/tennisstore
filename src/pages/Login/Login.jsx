@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./Login.scss";
+import { login } from "../../redux/actions";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import axios from "axios";
@@ -19,6 +20,7 @@ class Login extends Component {
 			email: this.state.email,
 			password: this.state.password
 		});
+		this.props.login(registerUser.data);
 		this.props.history.push("/");
 		console.log(registerUser.data);
 	};
@@ -57,7 +59,7 @@ class Login extends Component {
 							}}
 							type='password'
 						/>
-						<button>Register</button>
+						<button>Login</button>
 					</form>
 				</div>
 			</section>
@@ -69,7 +71,7 @@ const mapStateToProps = state => {
 	return state;
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = { login };
 
 export default connect(
 	mapStateToProps,
