@@ -1,8 +1,31 @@
 import React, { Component } from "react";
 import "./Login.scss";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 export default class Login extends Component {
+	constructor() {
+		super();
+		this.state = {
+			email: "",
+			password: ""
+		};
+	}
+
+	handleSubmit = async e => {
+		e.preventDefault();
+		const registerUser = await axios.post("/api/login", {
+			email: this.state.email,
+			password: this.state.password
+		});
+		this.props.history.push("/");
+		console.log(registerUser.data);
+	};
+
+	componentWillUnmount() {
+		this.setState({ email: "", password: "" });
+	}
+
 	render() {
 		return (
 			<section className='register'>
@@ -11,12 +34,29 @@ export default class Login extends Component {
 				</header>
 				<div className='register-form'>
 					<h2>Login in to your account</h2>
-					<form action='submit'>
+					<form
+						onSubmit={e => {
+							this.handleSubmit(e);
+						}}
+						action='submit'
+					>
 						<label>Email</label>
-						<input type='email' />
+						<input
+							value={this.state.email}
+							onChange={e => {
+								this.setState({ email: e.target.value });
+							}}
+							type='email'
+						/>
 						<label>Password</label>
-						<input type='password' />
-						<button>Login</button>
+						<input
+							value={this.state.password}
+							onChange={e => {
+								this.setState({ password: e.target.value });
+							}}
+							type='password'
+						/>
+						<button>Register</button>
 					</form>
 				</div>
 			</section>

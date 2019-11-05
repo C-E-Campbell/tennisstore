@@ -1,7 +1,32 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import "./Register.scss";
 import { Link } from "react-router-dom";
-export default class Register extends Component {
+import axios from "axios";
+class Register extends Component {
+	constructor() {
+		super();
+		this.state = {
+			email: "",
+			password: ""
+		};
+	}
+
+	handleSubmit = async e => {
+		e.preventDefault();
+		const registerUser = await axios.post("/api/register", {
+			email: this.state.email,
+			password: this.state.password
+		});
+
+		this.props.this.props.history.push("/");
+		console.log(registerUser.data);
+	};
+
+	componentWillUnmount() {
+		this.setState({ email: "", password: "" });
+	}
+
 	render() {
 		return (
 			<section className='register'>
@@ -10,15 +35,28 @@ export default class Register extends Component {
 				</header>
 				<div className='register-form'>
 					<h2>Register your account</h2>
-					<form action='submit'>
-						<label>First Name</label>
-						<input type='text' />
-						<label>Last Name</label>
-						<input type='text' />
+					<form
+						onSubmit={e => {
+							this.handleSubmit(e);
+						}}
+						action='submit'
+					>
 						<label>Email</label>
-						<input type='email' />
+						<input
+							value={this.state.email}
+							onChange={e => {
+								this.setState({ email: e.target.value });
+							}}
+							type='email'
+						/>
 						<label>Password</label>
-						<input type='password' />
+						<input
+							value={this.state.password}
+							onChange={e => {
+								this.setState({ password: e.target.value });
+							}}
+							type='password'
+						/>
 						<button>Register</button>
 					</form>
 				</div>
@@ -26,3 +64,15 @@ export default class Register extends Component {
 		);
 	}
 }
+const mapStateToProps = state => {
+	return {
+		state: state
+	};
+};
+
+const mapDispatchToProps = {};
+
+export default connect(
+	mapStateToProps,
+	mapDispatchToProps
+)(Register);

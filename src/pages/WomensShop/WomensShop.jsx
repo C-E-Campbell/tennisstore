@@ -21,11 +21,11 @@ export default class WomensShop extends Component {
 					<div className='store-boxes'>
 						<Link to='/womensclothing'>
 							<img src={WomenShop} alt='shop women' />
-							{/* <h3>Clothing</h3> */}
+							<h3>Clothing</h3>
 						</Link>
 						<Link to='/womensclothing'>
 							<img src={Shoe} alt='shop women' />
-							{/* <h3>Shoes</h3> */}
+							<h3>Shoes</h3>
 						</Link>
 					</div>
 					<Footer />

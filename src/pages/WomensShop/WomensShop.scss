@@ -28,6 +28,7 @@
 
 	a {
 		display: flex;
+
 		justify-content: center;
 		align-items: center;
 		&:hover {
@@ -35,51 +36,59 @@
 		}
 	}
 	:nth-child(1) {
+		position: relative;
 		width: 90%;
 		height: 600px;
 		overflow: hidden;
 		position: relative;
+		&:hover img {
+			transform: scale(1.25);
+		}
 		h3 {
-			font-size: 2rem;
+			font-size: 3rem;
 			z-index: 2;
+			position: absolute;
+			top: 40%;
+			height: 10%;
+			color: #fff;
+			padding: 0;
+			margin: 0;
+			font-family: "Oswald", sans-serif;
+			text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.562);
 		}
 
 		img {
-			// position: absolute;
-			// top: 0;
-			// left: 25%;
-			// right: 0;
-			// bottom: 0;
 			height: 100%;
-
 			transition: transform 1.9s;
-			&:hover {
-				transform: scale(1.15);
-			}
 		}
 	}
 	:nth-child(2) {
+		position: relative;
 		width: 90%;
 		height: 600px;
 		overflow: hidden;
 		position: relative;
+
+		&:hover img {
+			transform: scale(1.25);
+		}
 		h3 {
-			font-size: 2rem;
+			font-size: 3rem;
 			z-index: 2;
+			position: absolute;
+			top: 40%;
+			height: 10%;
+			color: #fff;
+			text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.562);
+
+			padding: 0;
+			margin: 0;
+			font-family: "Oswald", sans-serif;
 		}
 
 		img {
-			// position: absolute;
-			// top: 0;
-			// left: 15%;
-			// right: 0;
-			// bottom: 0;
 			height: 100%;
-
 			transition: transform 1.9s;
-			&:hover {
-				transform: scale(1.25);
-			}
 		}
 	}
 }
