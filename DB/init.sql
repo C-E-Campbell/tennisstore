@@ -1,7 +1,7 @@
-CREATE TABLE customers( user_id SERIAL PRIMARY KEY,
-                                               email VARCHAR(500) UNIQUE NOT NULL,
-                                                                         password VARCHAR(500) NOT NULL,
-                                                                                               isAdmin BOOLEAN);
+CREATE TABLE customers(user_id SERIAL PRIMARY KEY,
+                                              email VARCHAR(500) UNIQUE NOT NULL,
+                                                                        password VARCHAR(500) NOT NULL,
+                                                                                              isAdmin BOOLEAN);
 
 
 INSERT INTO customers(email,
@@ -10,15 +10,13 @@ INSERT INTO customers(email,
 VALUES('charles.e.campbell1989@gmail.com',
        'rufus0606',
        true)
-
-       
-CREATE TABLE inventory( item_id SERIAL PRIMARY KEY,
-                                               name VARCHAR(500) price FLOAT NOT NULL,
-                                                                             brand VARCHAR(64) NOT NULL,
-                                                                                               category VARCHAR(64) NOT NULL,
-                                                                                                                    image TEXT NOT NULL,
-                                                                                                                               description TEXT NOT NULL,
-                                                                                                                                                type VARCHAR(64));
+CREATE TABLE inventory(item_id SERIAL PRIMARY KEY,
+                                              name VARCHAR(500) price FLOAT NOT NULL,
+                                                                            brand VARCHAR(64) NOT NULL,
+                                                                                              category VARCHAR(64) NOT NULL,
+                                                                                                                   image TEXT NOT NULL,
+                                                                                                                              description TEXT NOT NULL,
+                                                                                                                                               type VARCHAR(64));
 
 
 INSERT INTO inventory(name,
@@ -27,7 +25,7 @@ INSERT INTO inventory(name,
                       category,
                       image,
                       description,
-                      type) -- Mens Clothing
+                      type)-- Mens Clothing
 VALUES('Nike Mens Court Dry Tennis Polo',
        45.00,
        'Nike',
@@ -69,7 +67,7 @@ VALUES('Mike Mens Court 9" Tennis Shorts',
        'Bottom',
        'https://dks.scene7.com/is/image/GolfGalaxy/16NIKMCRTDRY9SHRTBTT_Black_White_White_White?wid=1400&fmt=jpg',
        'Constructed of Nike® Dry fabric with Dri-FIT® technology, the Nike® Court Dry Shorts offer unbeatable comfort to keep you cool, dry and concentrated during even the most intense matches.',
-       'Men') -- Mens Shoes
+       'Men')-- Mens Shoes
 VALUES('Asics Court FF 2 Novak Mens Tennis Shoe',
        160.00,
        'Asics',
@@ -110,7 +108,7 @@ VALUES('Wilson Rush Pro 2.5 Mens Tennis Shoe',
        'Shoe',
        'https://www.midwestsports.com/images/l/WRS324110_2.jpg',
        'In new colors for 2018, Wilson Mens Rush Pro 2.5 tennis shoes will help you take your game to the next level. This tennis shoe is a lightweight shoe with explosive power and unmatched stability with Pro Torque technology, along with Dynamic fit to give a cushioned court feel and enhanced responsiveness. The R-DST+ offers the best combination of cushioning and rebound for a more dynamic performance on the court while the Sensifeel insole upgrades comfort and maintains superior support.',
-       'Men') -- Gear
+       'Men')-- Gear
 VALUES('Babolat Drive G Tennis Racquet',
        150.00,
        'Babolat',
@@ -152,7 +150,7 @@ VALUES('Babolat Pure Strike Tennis Backpack',
        'Gear',
        'https://dks.scene7.com/is/image/dkscdn/19BABUBCKPCKPRSTRTNN_White_Red?wid=425',
        'Transport all your essentials in the Babolat® Pure Strike Tennis Backpack. With plenty of pockets and internal space, the bag conveniently stores all of your items and easily converts to hold your favorite racquet.',
-       'MISC') -- Womens Shoes
+       'MISC')-- Womens Shoes
 VALUES('Nike Air Zoom Vapor X Knit Womens Tennis Shoe',
        170.00,
        'Nike',
@@ -194,7 +192,7 @@ VALUES('Asics Solution Speed FF Womens Tennis Shoe',
        'Shoe',
        'https://www.midwestsports.com/images/l/1042A002-410_2.jpg',
        'The Asics Solution Speed FF womens tennis shoes, now in new colors for 2019, are lightweight and supportive with a form-fitting Flexion fit upper, Gel cushioning systems in the rearfoot and forefoot, and a FlyteFoam midsole for excellent cushioning. A high abrasion rubber outsole offers exceptional durability. This shoe is the perfect blend of moderate support and speedy ride with comfort and support for even the most aggressive, agile players.',
-       'Women') -- Womens Clothing
+       'Women')-- Womens Clothing
 VALUES('Nike Womens NikeCourt Dri-FIT Tennis T-Shirt',
        50.00,
        'Nike',
@@ -227,7 +225,7 @@ VALUES('Lucky In Love Womens Lit Pleated Scallop Tennis Skort',
        48.00,
        'Lucky In Love',
        'Bottom',
-       'https://dks.scene7.com/is/image/GolfGalaxy/19RRKWLTPLTDSCLLPBTT_Coral_Crush?wid=1400&fmt=jp',
+       'https://dks.scene7.com/is/image/GolfGalaxy/19RRKWLTPLTDSCLLPBTT_Coral_Crush?wid=1400&fmt=jpg',
        'Turn heads on the court in the stunning yet performance-focused Lucky In Love® Women’s Lit Pleated Scallop Tennis Skort. This bottom is made with super-smooth moisture-wicking fabric and UPF 30+ so you stay dry and covered from match to match.',
        'Women')
 VALUES('Under Armour Womens TechTwist Print Zip Long Sleeve Shirt',
@@ -237,7 +235,7 @@ VALUES('Under Armour Womens TechTwist Print Zip Long Sleeve Shirt',
        'https://dks.scene7.com/is/image/GolfGalaxy/17UARWNWTCH12ZPTWAPT_Fractal_Pink?wid=1400&fmt=jpg',
        'Designed for performance and comfort, the Under Armour® Women’s Tech Twist Print ½ Zip Long Sleeve Shirt is your next go-to favorite. Incredibly lightweight UA Tech™ offers a soft, athletic feel, while the ½ zip front closure makes layering a breeze. Moisture-wicking properties work to keep you dry and light, while anti-odor technology works to eliminate odor build-up. Train without distraction in the UA Tech™ Twist Print ½ Zip Long Sleeve Shirt.',
        'Women')
-CREATE TABLE reviews( review_id SERIAL PRIMARY KEY,
-                                               comment TEXT NOT NULL,
-                                                            item_id INTEGER REFERENCES inventory(item_id));
+CREATE TABLE reviews(review_id SERIAL PRIMARY KEY,
+                                              comment TEXT NOT NULL,
+                                                           item_id INTEGER REFERENCES inventory(item_id));
 

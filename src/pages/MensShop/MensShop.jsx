@@ -6,7 +6,7 @@ import clothing from "../../assets/menClothing.jpg";
 import Shoe from "../../assets/menShoe.jpg";
 import Footer from "../../components/Footer/Footer";
 
-export default class WomensShop extends Component {
+export default class MensShop extends Component {
 	render() {
 		return (
 			<div>

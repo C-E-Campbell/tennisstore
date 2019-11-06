@@ -7,7 +7,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import StoreGrid from "../../components/StoreGrid/StoreGrid";
 import "../WomensClothing/WomensClothing.scss";
-class MensClothing extends React.Component {
+class Gear extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -18,16 +18,12 @@ class MensClothing extends React.Component {
 	async componentDidMount() {
 		const items = await axios.get("/api/inventory");
 		this.props.getInventory(items.data);
-		const womensItems = this.props.items.inventory
-			.filter(item => {
-				return item.type === "Women";
-			})
-			.filter(item => {
-				return item.category === "Top" || item.category === "Bottom";
-			});
+		const gearItems = this.props.items.inventory.filter(item => {
+			return item.category === "Gear";
+		});
 
 		this.setState({
-			inventory: womensItems
+			inventory: gearItems
 		});
 	}
 	render() {
@@ -57,4 +53,4 @@ const mapDispatchToProps = {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(MensClothing);
+)(Gear);

@@ -15,7 +15,7 @@ export default class WomensShop extends Component {
 				</header>
 				<section className='womensPage'>
 					<Header />
-					<div className='shop-hero'>
+					<div>
 						<h2>Shop Womens Styles</h2>
 					</div>
 					<div className='store-boxes'>
@@ -23,7 +23,7 @@ export default class WomensShop extends Component {
 							<img src={WomenShop} alt='shop women' />
 							<h3>Clothing</h3>
 						</Link>
-						<Link to='/womensclothing'>
+						<Link to='/womensshoes'>
 							<img src={Shoe} alt='shop women' />
 							<h3>Shoes</h3>
 						</Link>

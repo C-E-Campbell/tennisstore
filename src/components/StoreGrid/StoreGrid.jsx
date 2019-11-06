@@ -11,6 +11,7 @@ export default function StoreGrid(props) {
 					image={image}
 					price={price}
 					name={name}
+					id={item_id}
 					description={description}
 				/>
 			);

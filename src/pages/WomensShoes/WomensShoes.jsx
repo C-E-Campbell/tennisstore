@@ -7,7 +7,7 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import StoreGrid from "../../components/StoreGrid/StoreGrid";
 import "../WomensClothing/WomensClothing.scss";
-class MensClothing extends React.Component {
+class WomensShoes extends React.Component {
 	constructor() {
 		super();
 		this.state = {
@@ -23,7 +23,7 @@ class MensClothing extends React.Component {
 				return item.type === "Women";
 			})
 			.filter(item => {
-				return item.category === "Top" || item.category === "Bottom";
+				return item.category === "Shoe";
 			});
 
 		this.setState({
@@ -57,4 +57,4 @@ const mapDispatchToProps = {
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
-)(MensClothing);
+)(WomensShoes);
