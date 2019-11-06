@@ -8,12 +8,19 @@ import Email from "../../components/Email/Email";
 import ScrollOver from "../../components/ScrollOver/ScrollOver";
 import Footer from "../../components/Footer/Footer";
 import { connect } from "react-redux";
-import { getInventory } from "../../redux/actions";
+import { getInventory, getCart } from "../../redux/actions";
 import axios from "axios";
 
 class Home extends Component {
 	async componentDidMount() {
 		const items = await axios.get("/api/inventory");
+		if (this.props.user.currentUser) {
+			const cart = await axios.get(
+				`/api/getCart/${this.props.user.currentUser.id}`
+			);
+			console.log(cart.data);
+		}
+
 		this.props.getInventory(items.data);
 	}
 
@@ -38,7 +45,8 @@ const mapStateToProps = state => {
 };
 
 const mapDispatchToProps = {
-	getInventory
+	getInventory,
+	getCart
 };
 
 export default connect(

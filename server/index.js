@@ -30,8 +30,10 @@ app.use(
 // End Points
 app.get("/api/test", test.test);
 app.get("/api/inventory", inventory.getAllInventory);
+app.get("/api/getcart/:id", inventory.getCart);
 app.post("/api/register", auth.register);
 app.post("/api/login", auth.login);
+app.post("/api/addtocart", inventory.addToCart);
 app.delete("/api/logout", auth.logout);
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));

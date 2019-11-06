@@ -2,6 +2,7 @@ import { REGISTER_USER } from "./UserReducer";
 import { LOGIN_USER } from "./UserReducer";
 import { LOGOUT_USER } from "./UserReducer";
 import { GET_INVENTORY } from "./InventoryReducer";
+import { GET_CART } from "./InventoryReducer";
 
 export const register = user => ({
 	type: REGISTER_USER,
@@ -20,5 +21,10 @@ export const logout = user => ({
 
 export const getInventory = items => ({
 	type: GET_INVENTORY,
+	payload: items
+});
+
+export const getCart = items => ({
+	type: GET_CART,
 	payload: items
 });

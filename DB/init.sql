@@ -239,3 +239,6 @@ CREATE TABLE reviews(review_id SERIAL PRIMARY KEY,
                                               comment TEXT NOT NULL,
                                                            item_id INTEGER REFERENCES inventory(item_id));
 
+
+CREATE TABLE cart( user_id INTEGER REFERENCES customer(user_id),
+                                              item_id INTEGER REFERENCES inventory(item_id))
