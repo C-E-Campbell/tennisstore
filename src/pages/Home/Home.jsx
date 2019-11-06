@@ -18,7 +18,7 @@ class Home extends Component {
 			const cart = await axios.get(
 				`/api/getCart/${this.props.user.currentUser.id}`
 			);
-			console.log(cart.data);
+			this.props.getCart(cart.data);
 		}
 
 		this.props.getInventory(items.data);
