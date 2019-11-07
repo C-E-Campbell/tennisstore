@@ -25,6 +25,16 @@ class Cart extends Component {
 			return cartStuff;
 		});
 
+		const subTotal = mappedCart
+			.map((item, i) => {
+				return item[0].props.price;
+			})
+			.reduce((acc, curr) => {
+				return (acc += curr);
+			});
+
+		console.log(subTotal);
+
 		return (
 			<div>
 				<LoginHeader />
@@ -35,21 +45,20 @@ class Cart extends Component {
 						<div className={styles.itemBox}>{mappedCart}</div>
 						<div className={styles.subtotalBox}>
 							<div>
-								<h3>SUBTOTAL</h3>
-								$34
+								<h3>SUBTOTAL </h3>
+								<h3>${subTotal}</h3>
 							</div>
 							<div>
 								<h3>SALES TAX</h3>
-								$34
+								<h3>${subTotal * 0.06}</h3>
 							</div>
 
 							<div>
-								<h3>TOTAL</h3>
-								$34
+								<h3>TOTAL </h3>
+								<h3>${subTotal * 0.06 + subTotal}</h3>
 							</div>
-							<div>
-								<button>PROCEED TO CHECKOUT</button>
-							</div>
+
+							<button>PROCEED TO CHECKOUT</button>
 						</div>
 					</div>
 				</div>

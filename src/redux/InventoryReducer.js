@@ -1,10 +1,12 @@
 const initialState = {
 	inventory: {},
-	cart: null
+	cart: null,
+	cartTotal: null
 };
 
 export const GET_INVENTORY = "GET_INVENTORY";
 export const GET_CART = "GET_CART";
+export const CART_TOTAL = "CART_TOTAL";
 
 const inventoryReducer = (state = initialState, action) => {
 	const { type, payload } = action;
@@ -18,6 +20,11 @@ const inventoryReducer = (state = initialState, action) => {
 			return {
 				...state,
 				cart: payload
+			};
+		case CART_TOTAL:
+			return {
+				...state,
+				cartTotal: payload
 			};
 		default:
 			return state;
