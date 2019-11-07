@@ -21,10 +21,14 @@ class InventoryItem extends React.Component {
 
 	addToCart = () => {
 		if (this.props.user.currentUser) {
-			axios.post("/api/addtocart", {
-				user: this.props.user.currentUser.id,
-				item: this.props.match.params.id
-			});
+			axios
+				.post("/api/addtocart", {
+					user: this.props.user.currentUser.id,
+					item: this.props.match.params.id
+				})
+				.then(res => {
+					this.props.history.push("/cart");
+				});
 		}
 	};
 

@@ -6,6 +6,7 @@ import Footer from "../../components/Footer/Footer";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 import { connect } from "react-redux";
 import { cartTotal } from "../../redux/actions";
+import { Link } from "react-router-dom";
 
 class Cart extends Component {
 	state = {
@@ -50,29 +51,33 @@ class Cart extends Component {
 			<div>
 				<LoginHeader />
 				<Header />
-				<div className={styles.cart}>
-					<h2>Your Cart:</h2>
-					<div className={styles.checkoutBox}>
-						<div className={styles.itemBox}>{this.state.cartItems}</div>
-						<div className={styles.subtotalBox}>
-							<div>
-								<h3>SUBTOTAL </h3>
-								<h3>${this.state.sub}</h3>
-							</div>
-							<div>
-								<h3>SALES TAX</h3>
-								<h3>${this.state.tax}</h3>
-							</div>
+				<div className={styles.cartContainer}>
+					<div className={styles.cart}>
+						<h2>Your Cart:</h2>
+						<Link to='/gear'>Continue Shopping</Link>
+						<div className={styles.checkoutBox}>
+							<div className={styles.itemBox}>{this.state.cartItems}</div>
+							<div className={styles.subtotalBox}>
+								<div>
+									<h3>SUBTOTAL </h3>
+									<h3>${this.state.sub}</h3>
+								</div>
+								<div>
+									<h3>SALES TAX</h3>
+									<h3>${Math.round(this.state.tax)}</h3>
+								</div>
 
-							<div>
-								<h3>TOTAL </h3>
-								<h3>${this.state.cartTotal}</h3>
-							</div>
+								<div>
+									<h3>TOTAL </h3>
+									<h3>${this.state.cartTotal}</h3>
+								</div>
 
-							<button>PROCEED TO CHECKOUT</button>
+								<button>PROCEED TO CHECKOUT</button>
+							</div>
 						</div>
 					</div>
 				</div>
+
 				<Footer />
 			</div>
 		);
