@@ -52,7 +52,7 @@ class Login extends Component {
 							onChange={e => {
 								this.setState({ email: e.target.value });
 							}}
-							type='email'
+							type='text'
 						/>
 						<label>Password</label>
 						<input

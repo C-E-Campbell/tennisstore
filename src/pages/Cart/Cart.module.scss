@@ -1,6 +1,12 @@
 .cart {
-	margin: 0 auto;
+	margin: 2rem auto;
 	min-height: 90vh;
+	font-family: "Oswald", sans-serif;
+
+	h2 {
+		margin-left: 2rem;
+		font-size: 2rem;
+	}
 }
 
 .checkoutBox {
@@ -8,14 +14,16 @@
 	justify-content: center;
 	font-family: "Oswald", sans-serif;
 	color: #333;
-	margin: 0 auto;
+	margin: 2rem auto;
 	width: 85%;
 }
 
 .itemBox {
 	display: flex;
+	flex-direction: column;
 	width: 55%;
-	background-color: rgb(240, 240, 240);
+	background-color: rgb(243, 243, 243);
+	padding: 1rem;
 }
 
 .subtotalBox {

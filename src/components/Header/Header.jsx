@@ -8,9 +8,6 @@ class Header extends Component {
 	constructor(props) {
 		super(props);
 		this.state = {
-			hoverMen: false,
-			hoverWomen: false,
-			hoverGear: false,
 			cartItems: null
 		};
 	}
@@ -18,7 +15,6 @@ class Header extends Component {
 	async componentDidMount() {
 		if (this.props.user.currentUser) {
 			const cartItems = this.props.items.cart;
-			console.log(cartItems);
 			this.setState({ cartItems: cartItems });
 		}
 	}
@@ -28,46 +24,10 @@ class Header extends Component {
 				<nav className={styles.MainNav}>
 					<div className={styles.LogoBox}>Personal Project</div>
 					<div className={styles.LinkBox}>
-						<Link
-							onMouseEnter={() => {
-								this.setState({
-									hoverMen: true,
-									hoverWomen: false,
+						<Link to='/mens'>Men</Link>
+						<Link to='/womens'>Women</Link>
 
-									hoverGear: false
-								});
-							}}
-							to='/mens'
-						>
-							Men
-						</Link>
-						<Link
-							onMouseEnter={() => {
-								this.setState({
-									hoverMen: false,
-									hoverWomen: true,
-
-									hoverGear: false
-								});
-							}}
-							to='/womens'
-						>
-							Women
-						</Link>
-
-						<Link
-							onMouseEnter={() => {
-								this.setState({
-									hoverMen: false,
-									hoverWomen: false,
-
-									hoverGear: true
-								});
-							}}
-							to='/gear'
-						>
-							Gear
-						</Link>
+						<Link to='/gear'>Gear</Link>
 					</div>
 
 					<div>
@@ -85,10 +45,9 @@ class Header extends Component {
 						) : null}
 					</div>
 					<div className={styles.CartBox}>
-						<img src={cartIcon} alt='cart' />{" "}
-						<div>
-							{this.props.user.currentUser ? this.state.cartItems : null}
-						</div>
+						<Link to='/cart'>
+							<img src={cartIcon} alt='cart' />
+						</Link>
 					</div>
 				</nav>
 				{this.state.hoverMen ? (

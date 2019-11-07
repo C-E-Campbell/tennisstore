@@ -3,17 +3,36 @@ import styles from "./Cart.module.scss";
 import LoginHeader from "../../components/LoginHeader/LoginHeader";
 import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
+import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 import { connect } from "react-redux";
 class Cart extends Component {
+	constructor() {
+		super();
+		this.state = {
+			cart: null
+		};
+	}
+	async componentDidMount() {}
+
 	render() {
+		const mappedCart = this.props.items.cart.map((cartItem, i) => {
+			const filteredItems = this.props.items.inventory.filter(item => {
+				return item.item_id === cartItem;
+			});
+			const cartStuff = filteredItems.map(cartProps => {
+				return <CheckoutItem key={cartProps.item_id} {...cartProps} />;
+			});
+			return cartStuff;
+		});
+
 		return (
 			<div>
 				<LoginHeader />
 				<Header />
 				<div className={styles.cart}>
-					<h2>Checkout</h2>
+					<h2>Your Cart:</h2>
 					<div className={styles.checkoutBox}>
-						<div className={styles.itemBox}></div>
+						<div className={styles.itemBox}>{mappedCart}</div>
 						<div className={styles.subtotalBox}>
 							<div>
 								<h3>SUBTOTAL</h3>
