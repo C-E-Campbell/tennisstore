@@ -8,7 +8,7 @@ import Email from "../../components/Email/Email";
 import ScrollOver from "../../components/ScrollOver/ScrollOver";
 import Footer from "../../components/Footer/Footer";
 import { connect } from "react-redux";
-import { getInventory, getCart } from "../../redux/actions";
+import { getInventory, getCart, cartTotal } from "../../redux/actions";
 import axios from "axios";
 
 class Home extends Component {

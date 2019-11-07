@@ -5,16 +5,16 @@ import Header from "../../components/Header/Header";
 import Footer from "../../components/Footer/Footer";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 import { connect } from "react-redux";
-class Cart extends Component {
-	constructor() {
-		super();
-		this.state = {
-			cart: null
-		};
-	}
-	async componentDidMount() {}
+import { cartTotal } from "../../redux/actions";
 
-	render() {
+class Cart extends Component {
+	state = {
+		cartTotal: null,
+		tax: null,
+		sub: null
+	};
+
+	componentDidMount() {
 		const mappedCart = this.props.items.cart.map((cartItem, i) => {
 			const filteredItems = this.props.items.inventory.filter(item => {
 				return item.item_id === cartItem;
@@ -32,9 +32,20 @@ class Cart extends Component {
 			.reduce((acc, curr) => {
 				return (acc += curr);
 			});
-
-		console.log(subTotal);
-
+		const tax = subTotal * 0.06;
+		const total = subTotal * 0.06 + subTotal;
+		this.setState({
+			cartItems: mappedCart,
+			cartTotal: total,
+			tax: tax,
+			sub: subTotal
+		});
+		this.props.cartTotal(total);
+	}
+	sendTotalToRedux = total => {
+		this.props.cartTotal(total);
+	};
+	render() {
 		return (
 			<div>
 				<LoginHeader />
@@ -42,20 +53,20 @@ class Cart extends Component {
 				<div className={styles.cart}>
 					<h2>Your Cart:</h2>
 					<div className={styles.checkoutBox}>
-						<div className={styles.itemBox}>{mappedCart}</div>
+						<div className={styles.itemBox}>{this.state.cartItems}</div>
 						<div className={styles.subtotalBox}>
 							<div>
 								<h3>SUBTOTAL </h3>
-								<h3>${subTotal}</h3>
+								<h3>${this.state.sub}</h3>
 							</div>
 							<div>
 								<h3>SALES TAX</h3>
-								<h3>${subTotal * 0.06}</h3>
+								<h3>${this.state.tax}</h3>
 							</div>
 
 							<div>
 								<h3>TOTAL </h3>
-								<h3>${subTotal * 0.06 + subTotal}</h3>
+								<h3>${this.state.cartTotal}</h3>
 							</div>
 
 							<button>PROCEED TO CHECKOUT</button>
@@ -72,7 +83,11 @@ const mapStateToProps = state => {
 	return state;
 };
 
+const mapDispatchToProps = {
+	cartTotal
+};
+
 export default connect(
 	mapStateToProps,
-	null
+	mapDispatchToProps
 )(Cart);
