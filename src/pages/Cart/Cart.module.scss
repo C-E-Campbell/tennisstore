@@ -1,0 +1,44 @@
+.cart {
+	margin: 0 auto;
+	min-height: 90vh;
+}
+
+.checkoutBox {
+	display: flex;
+	justify-content: center;
+	font-family: "Oswald", sans-serif;
+	color: #333;
+	margin: 0 auto;
+	width: 85%;
+}
+
+.itemBox {
+	display: flex;
+	width: 55%;
+	background-color: rgb(240, 240, 240);
+}
+
+.subtotalBox {
+	display: flex;
+	justify-content: space-between;
+	flex-direction: column;
+	background-color: #00e1ff;
+
+	button {
+		border: none;
+		padding: 0.5rem;
+		border-radius: 4px;
+		background-color: #fff;
+
+		&:hover {
+			cursor: pointer;
+			background-color: rgb(245, 245, 245);
+		}
+	}
+
+	div {
+		display: flex;
+		justify-content: space-between;
+		padding: 1rem;
+	}
+}
