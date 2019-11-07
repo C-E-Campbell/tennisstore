@@ -20,10 +20,12 @@ class InventoryItem extends React.Component {
 	}
 
 	addToCart = () => {
-		axios.post("/api/addtocart", {
-			user: this.props.user.currentUser.id,
-			item: this.props.match.params.id
-		});
+		if (this.props.user.currentUser) {
+			axios.post("/api/addtocart", {
+				user: this.props.user.currentUser.id,
+				item: this.props.match.params.id
+			});
+		}
 	};
 
 	render() {
@@ -59,6 +61,7 @@ class InventoryItem extends React.Component {
 						>
 							Add to Cart
 						</button>
+						<button>View Cart</button>
 						<button>Add to Favorites</button>
 					</div>
 				</div>

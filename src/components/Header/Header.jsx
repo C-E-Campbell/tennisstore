@@ -10,10 +10,18 @@ class Header extends Component {
 		this.state = {
 			hoverMen: false,
 			hoverWomen: false,
-			hoverGear: false
+			hoverGear: false,
+			cartItems: null
 		};
 	}
 
+	async componentDidMount() {
+		if (this.props.user.currentUser) {
+			const cartItems = this.props.items.cart;
+			console.log(cartItems);
+			this.setState({ cartItems: cartItems });
+		}
+	}
 	render() {
 		return (
 			<div className='header-div'>
@@ -61,13 +69,26 @@ class Header extends Component {
 							Gear
 						</Link>
 					</div>
+
 					<div>
-						{this.props.user.currentUser
-							? `Welcome, ${this.props.user.currentUser.email}`
-							: null}
+						{this.props.user.currentUser ? (
+							<div className='ui compact menu'>
+								<div className='ui simple dropdown item'>
+									<div>{`Welcome, ${this.props.user.currentUser.email}`}</div>
+
+									<i className='dropdown icon'></i>
+									<div className='menu'>
+										<div className='item'>View/Edit Profile</div>
+									</div>
+								</div>
+							</div>
+						) : null}
 					</div>
 					<div className={styles.CartBox}>
-						<img src={cartIcon} alt='cart' />
+						<img src={cartIcon} alt='cart' />{" "}
+						<div>
+							{this.props.user.currentUser ? this.state.cartItems : null}
+						</div>
 					</div>
 				</nav>
 				{this.state.hoverMen ? (

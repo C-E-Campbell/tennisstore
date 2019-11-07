@@ -34,7 +34,7 @@
 	.CartBox {
 		padding-right: 2rem;
 		align-items: center;
-
+		display: flex;
 		img {
 			height: 25px;
 			&:hover {
@@ -66,4 +66,10 @@
 	width: 100%;
 	margin: 0 auto;
 	height: 300px;
+}
+.profileBox {
+	display: flex;
+	width: 200px;
+	justify-content: space-around;
+	align-items: center;
 }

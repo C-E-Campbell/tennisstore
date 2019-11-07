@@ -15,13 +15,17 @@ class Login extends Component {
 	}
 
 	handleSubmit = async e => {
-		e.preventDefault();
-		const registerUser = await axios.post("/api/login", {
-			email: this.state.email,
-			password: this.state.password
-		});
-		this.props.login(registerUser.data);
-		this.props.history.push("/");
+		if (this.state.email === "" || this.state.password === "") {
+			e.preventDefault();
+		} else {
+			e.preventDefault();
+			const registerUser = await axios.post("/api/login", {
+				email: this.state.email,
+				password: this.state.password
+			});
+			this.props.login(registerUser.data);
+			this.props.history.push("/");
+		}
 	};
 
 	componentWillUnmount() {
