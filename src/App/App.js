@@ -15,6 +15,8 @@ import WomensShoes from "../pages/WomensShoes/WomensShoes";
 import Gear from "../pages/GearShop/GearShop";
 import InventoryItem from "../components/InventoryItem/InventoryItem";
 import Cart from "../pages/Cart/Cart";
+import Profile from "../pages/Profile/Profile";
+
 function App() {
 	return (
 		<Switch>
@@ -30,6 +32,7 @@ function App() {
 			<Route component={WomensClothing} path={"/womensclothing"} />
 			<Route component={Gear} path={"/gear"} />
 			<Route component={InventoryItem} path={"/store/:id"} />
+			<Route component={Profile} path={"/profile/:id"} />
 			<Route component={Cart} path={"/cart"} />
 		</Switch>
 	);

@@ -41,11 +41,20 @@
 }
 
 .subtotalBox {
-	display: flex;
-	justify-content: space-between;
-	flex-direction: column;
 	background-color: #00e1ff;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	div {
+		padding: 1rem 0.5rem;
+		width: 100%;
 
+		div {
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+		}
+	}
 	button {
 		border: none;
 		padding: 0.5rem;
@@ -57,12 +66,5 @@
 			cursor: pointer;
 			background-color: rgb(245, 245, 245);
 		}
-	}
-
-	div {
-		display: flex;
-		justify-content: space-between;
-		padding: 1rem;
-		width: 80%;
 	}
 }

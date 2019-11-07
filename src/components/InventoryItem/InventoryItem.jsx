@@ -4,6 +4,7 @@ import axios from "axios";
 import styles from "./InventoryItem.module.scss";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
+import { getCart } from "../../redux/actions";
 class InventoryItem extends React.Component {
 	constructor(props) {
 		super(props);
@@ -85,7 +86,9 @@ const mapStateToProps = state => {
 	return state;
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+	getCart
+};
 export default connect(
 	mapStateToProps,
 	mapDispatchToProps
