@@ -10,12 +10,13 @@ module.exports = {
 		const db = req.app.get("db");
 		const { currentPass, newPass, user } = req.body;
 		let checkUser = await db.check_if_customer_exists([user]);
-
 		let checkPass = bcrypt.compareSync(currentPass, checkUser[0].password);
 		if (checkPass) {
 			const hash = bcrypt.hashSync(newPass, 10);
 			db.update_pass([hash, user]);
 			res.status(200).send("updated");
+		} else {
+			res.status(400).send("current password seems to be wrong");
 		}
 	}
 };

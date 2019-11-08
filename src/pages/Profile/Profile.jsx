@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
-import { updateEmail, logout } from "../../redux/actions";
+import { updateEmail, logout, login } from "../../redux/actions";
 import axios from "axios";
 class Profile extends Component {
 	state = {
@@ -22,28 +21,21 @@ class Profile extends Component {
 		this.props.history.push("/signin");
 	};
 
-	updatePass = (currentPass, newPass, email) => {
-		axios
-			.put("/api/updatePass", {
-				currentPass,
-				newPass,
-				email
-			})
-			.then(res => {
-				this.setState({ passSet: true });
-				setTimeout(() => {
-					this.setState({ passSet: false });
-				}, 1000);
-			});
+	updatePass = async (currentPass, newPass, user) => {
+		await axios.put("/api/updatePass", {
+			currentPass,
+			newPass,
+			user
+		});
+		await this.props.logout();
+		this.props.history.push("/signin");
 	};
+
 	render() {
 		return (
 			<div>
 				{!this.props.user.currentUser ? (
-					<div>
-						<div>You must login in to view your account</div>
-						<Link to='/'>GO TO HOME</Link>
-					</div>
+					this.props.history.push("/")
 				) : (
 					<div>
 						<h2>Current Email: {this.props.user.currentUser.email}</h2>
@@ -67,7 +59,8 @@ class Profile extends Component {
 							<button>Update email</button>
 						</form>
 						<form
-							onSubmit={() => {
+							onSubmit={e => {
+								e.preventDefault();
 								this.updatePass(
 									this.state.currentPass,
 									this.state.newPass,
@@ -106,7 +99,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
 	updateEmail,
-	logout
+	logout,
+	login
 };
 
 export default connect(
