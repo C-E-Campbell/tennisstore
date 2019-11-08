@@ -3,6 +3,7 @@ import styles from "./Header.module.scss";
 import cartIcon from "../../assets/cart-min.png";
 import { connect } from "react-redux";
 import React, { Component } from "react";
+import { withRouter } from "react-router-dom";
 
 class Header extends Component {
 	constructor(props) {
@@ -38,58 +39,28 @@ class Header extends Component {
 
 									<i className='dropdown icon'></i>
 									<div className='menu'>
-										<div className='item'>View/Edit Profile</div>
+										<div
+											onClick={() => {
+												this.props.history.push(
+													`/profile/${this.props.user.currentUser.id}`
+												);
+											}}
+											className='item'
+										>
+											View/Edit Profile
+										</div>
 									</div>
 								</div>
 							</div>
 						) : null}
 					</div>
+
 					<div className={styles.CartBox}>
 						<Link to='/cart'>
 							<img src={cartIcon} alt='cart' />
 						</Link>
 					</div>
 				</nav>
-				{this.state.hoverMen ? (
-					<div
-						onMouseLeave={() => {
-							this.setState({ hoverMen: false });
-						}}
-						className={styles.getfked}
-					>
-						<h1>Men</h1>
-					</div>
-				) : null}
-				{this.state.hoverWomen ? (
-					<div
-						onMouseLeave={() => {
-							this.setState({ hoverWomen: false });
-						}}
-						className={styles.getfked}
-					>
-						<h1>Women</h1>
-					</div>
-				) : null}
-				{this.state.hoverKids ? (
-					<div
-						onMouseLeave={() => {
-							this.setState({ hoverKids: false });
-						}}
-						className={styles.getfked}
-					>
-						<h1>Kids</h1>
-					</div>
-				) : null}
-				{this.state.hoverGear ? (
-					<div
-						onMouseLeave={() => {
-							this.setState({ hoverGear: false });
-						}}
-						className={styles.getfked}
-					>
-						<h1>Gear</h1>
-					</div>
-				) : null}
 			</div>
 		);
 	}
@@ -101,4 +72,4 @@ const mapStateToProps = state => {
 export default connect(
 	mapStateToProps,
 	null
-)(Header);
+)(withRouter(Header));
