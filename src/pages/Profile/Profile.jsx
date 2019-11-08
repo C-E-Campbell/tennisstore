@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import { updateEmail, logout, login } from "../../redux/actions";
 import axios from "axios";
 class Profile extends Component {
@@ -28,14 +29,16 @@ class Profile extends Component {
 			user
 		});
 		await this.props.logout();
-		this.props.history.push("/signin");
 	};
 
 	render() {
 		return (
 			<div>
 				{!this.props.user.currentUser ? (
-					this.props.history.push("/")
+					<div>
+						<h3>Login</h3>
+						<Link to='/signin'>GO TO LOGIN</Link>
+					</div>
 				) : (
 					<div>
 						<h2>Current Email: {this.props.user.currentUser.email}</h2>
