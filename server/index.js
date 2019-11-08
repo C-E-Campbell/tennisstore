@@ -5,10 +5,11 @@ const session = require("express-session");
 const { PORT, SESSION_STRING, CONNECTION_STRING } = process.env;
 const app = express();
 
-// Controllers
+//----- Controllers
 const test = require("./controllers/testCtrl");
 const inventory = require("./controllers/inventoryCtrl");
 const auth = require("./controllers/authCtrl");
+const user = require("./controllers/userCtrl");
 
 massive(CONNECTION_STRING).then(db => {
 	app.set("db", db);
@@ -27,13 +28,18 @@ app.use(
 	})
 );
 
-// End Points
+//----- End Points
 app.get("/api/test", test.test);
 app.get("/api/inventory", inventory.getAllInventory);
 app.get("/api/getcart/:id", inventory.getCart);
+
 app.post("/api/register", auth.register);
 app.post("/api/login", auth.login);
 app.post("/api/addtocart", inventory.addToCart);
+
+app.put("/api/updateEmail", user.updateEmail);
+//app.put("/api/updatePass", user.updatePass)
+
 app.delete("/api/logout", auth.logout);
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));

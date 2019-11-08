@@ -1,10 +1,22 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import axios from "axios";
 class Profile extends Component {
 	state = {
-		currentPass: ""
+		currentPass: "",
+		newPass: "",
+		newEmail: ""
 	};
+
+	updateEmail = async (newEmail, user_id) => {
+		const result = await axios.put("/api/updateEmail", {
+			newEmail,
+			user_id
+		});
+		console.log(result);
+	};
+
 	render() {
 		return (
 			<div>
@@ -15,17 +27,43 @@ class Profile extends Component {
 					</div>
 				) : (
 					<div>
-						<button>Delete Account</button>
 						<h2>Current Email: {this.props.user.currentUser.email}</h2>
-						<input placeholder='Enter New Email' />
-						<button>Update email</button>
+						<form
+							onSubmit={e => {
+								e.preventDefault();
+								this.updateEmail(
+									this.state.newEmail,
+									this.props.user.currentUser.id
+								);
+							}}
+						>
+							<input
+								value={this.state.newEmail}
+								type='email'
+								onChange={e => {
+									this.setState({ newEmail: e.target.value });
+								}}
+								placeholder='Enter New Email'
+							/>
+							<button>Update email</button>
+						</form>
+
 						<input
+							value={this.state.currentPass}
+							type='password'
 							onChange={e => {
 								this.setState({ currentPass: e.target.value });
 							}}
 							placeholder='Enter Current Password'
 						/>
-						<input placeholder='Enter New Password' />
+						<input
+							value={this.state.newPass}
+							onChange={e => {
+								this.setState({ newPass: e.target.value });
+							}}
+							type='password'
+							placeholder='Enter New Password'
+						/>
 						<button>Update Password</button>
 					</div>
 				)}
