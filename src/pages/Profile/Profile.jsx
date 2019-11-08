@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
+import { updateEmail, logout } from "../../redux/actions";
 import axios from "axios";
 class Profile extends Component {
 	state = {
@@ -14,7 +15,10 @@ class Profile extends Component {
 			newEmail,
 			user_id
 		});
-		console.log(result);
+		const updatedEmail = result.data[0].email;
+		this.props.updateEmail(updatedEmail);
+		this.props.logout();
+		this.props.history.push("/signin");
 	};
 
 	render() {
@@ -76,7 +80,10 @@ const mapStateToProps = state => {
 	return state;
 };
 
-const mapDispatchToProps = {};
+const mapDispatchToProps = {
+	updateEmail,
+	logout
+};
 
 export default connect(
 	mapStateToProps,

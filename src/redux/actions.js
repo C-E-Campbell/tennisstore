@@ -4,6 +4,7 @@ import { LOGOUT_USER } from "./UserReducer";
 import { GET_INVENTORY } from "./InventoryReducer";
 import { GET_CART } from "./InventoryReducer";
 import { CART_TOTAL } from "./InventoryReducer";
+import { UPDATE_EMAIL } from "./UserReducer";
 
 export const register = user => ({
 	type: REGISTER_USER,
@@ -33,4 +34,9 @@ export const getCart = items => ({
 export const cartTotal = total => ({
 	type: CART_TOTAL,
 	payload: total
+});
+
+export const updateEmail = newEmail => ({
+	type: UPDATE_EMAIL,
+	payload: newEmail
 });

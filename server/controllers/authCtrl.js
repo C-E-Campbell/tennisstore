@@ -21,7 +21,7 @@ module.exports = {
 		const db = req.app.get("db");
 		const checkForUser = await db.check_if_customer_exists([email]);
 		if (!checkForUser[0]) {
-			res.status(402).send("Cant find that account. You may need to register");
+			res.status(401).send("Cant find that account. You may need to register");
 		} else {
 			let checkPass = bcrypt.compareSync(password, checkForUser[0].password);
 			if (checkPass) {
