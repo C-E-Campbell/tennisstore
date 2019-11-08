@@ -38,7 +38,7 @@ app.post("/api/login", auth.login);
 app.post("/api/addtocart", inventory.addToCart);
 
 app.put("/api/updateEmail", user.updateEmail);
-//app.put("/api/updatePass", user.updatePass)
+app.put("/api/updatePass", user.updatePass);
 
 app.delete("/api/logout", auth.logout);
 

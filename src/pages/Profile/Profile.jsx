@@ -7,7 +7,8 @@ class Profile extends Component {
 	state = {
 		currentPass: "",
 		newPass: "",
-		newEmail: ""
+		newEmail: "",
+		passSet: false
 	};
 
 	updateEmail = async (newEmail, user_id) => {
@@ -21,6 +22,20 @@ class Profile extends Component {
 		this.props.history.push("/signin");
 	};
 
+	updatePass = (currentPass, newPass, email) => {
+		axios
+			.put("/api/updatePass", {
+				currentPass,
+				newPass,
+				email
+			})
+			.then(res => {
+				this.setState({ passSet: true });
+				setTimeout(() => {
+					this.setState({ passSet: false });
+				}, 1000);
+			});
+	};
 	render() {
 		return (
 			<div>
@@ -51,24 +66,33 @@ class Profile extends Component {
 							/>
 							<button>Update email</button>
 						</form>
-
-						<input
-							value={this.state.currentPass}
-							type='password'
-							onChange={e => {
-								this.setState({ currentPass: e.target.value });
+						<form
+							onSubmit={() => {
+								this.updatePass(
+									this.state.currentPass,
+									this.state.newPass,
+									this.props.user.currentUser.email
+								);
 							}}
-							placeholder='Enter Current Password'
-						/>
-						<input
-							value={this.state.newPass}
-							onChange={e => {
-								this.setState({ newPass: e.target.value });
-							}}
-							type='password'
-							placeholder='Enter New Password'
-						/>
-						<button>Update Password</button>
+						>
+							<input
+								value={this.state.currentPass}
+								type='password'
+								onChange={e => {
+									this.setState({ currentPass: e.target.value });
+								}}
+								placeholder='Enter Current Password'
+							/>
+							<input
+								value={this.state.newPass}
+								onChange={e => {
+									this.setState({ newPass: e.target.value });
+								}}
+								type='password'
+								placeholder='Enter New Password'
+							/>
+							<button>Update Password</button>
+						</form>
 					</div>
 				)}
 			</div>
