@@ -18,15 +18,16 @@ class Cart extends Component {
 	};
 
 	deleteCartItem = async (id, user) => {
-		axios.delete(`/api/deletecartitem/${id}/${user}`);
-		const cart = await axios.get(
-			`/api/getCart/${this.props.user.currentUser.id}`
+		const returnedCart = await axios.delete(
+			`/api/deletecartitem/${id}/${user}`
 		);
-		this.props.getCart(cart.data);
-		console.log("hello");
+
+		this.props.getCart(returnedCart.data);
+		this.getCustomerCart();
 	};
 
-	componentDidMount() {
+	getCustomerCart = () => {
+		console.log("hello from cart");
 		if (this.props.user.currentUser) {
 			const mappedCart = this.props.items.cart.map((cartItem, i) => {
 				const filteredItems = this.props.items.inventory.filter(item => {
@@ -43,14 +44,17 @@ class Cart extends Component {
 				});
 				return cartStuff;
 			});
-			if (this.props.items.cart.length > 0) {
+			// this.setState({
+			// 	cartItems: mappedCart
+			// });
+			if (this.props.items.cart.length >= 0) {
 				const subTotal = mappedCart
 					.map((item, i) => {
 						return item[0].props.price;
 					})
-					.reduce((acc, curr) => {
+					.reduce((acc, curr = 0) => {
 						return (acc += curr);
-					});
+					}, 0);
 				const tax = subTotal * 0.06;
 				const total = subTotal * 0.06 + subTotal;
 				this.setState({
@@ -62,11 +66,11 @@ class Cart extends Component {
 				this.props.cartTotal(total);
 			}
 		}
+	};
+	componentDidMount() {
+		this.getCustomerCart();
 	}
-	componentDidUpdate(prevProps) {
-		if (this.props.cart.length !== prevProps.cart.length)
-			this.props.getCart(this.props.user.currentUser.id);
-	}
+
 	render() {
 		return (
 			<div>
@@ -116,7 +120,10 @@ class Cart extends Component {
 }
 
 const mapStateToProps = state => {
-	return state;
+	return {
+		user: state.user,
+		items: state.items
+	};
 };
 
 const mapDispatchToProps = {
