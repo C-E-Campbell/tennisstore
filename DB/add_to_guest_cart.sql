@@ -1,0 +1,1 @@
+INSERT INTO guest(item_id)

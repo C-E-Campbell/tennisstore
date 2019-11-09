@@ -20,16 +20,17 @@ class InventoryItem extends React.Component {
 		this.setState({ singleItem: myItem[0] });
 	}
 
-	addToCart = () => {
+	addToCart = async () => {
 		if (this.props.user.currentUser) {
-			axios
-				.post("/api/addtocart", {
-					user: this.props.user.currentUser.id,
-					item: this.props.match.params.id
-				})
-				.then(res => {
-					this.props.history.push("/cart");
-				});
+			axios.post("/api/addtocart", {
+				user: this.props.user.currentUser.id,
+				item: this.props.match.params.id
+			});
+			const cart = await axios.get(
+				`/api/getCart/${this.props.user.currentUser.id}`
+			);
+			this.props.getCart(cart.data);
+			this.props.history.push("/cart");
 		}
 	};
 

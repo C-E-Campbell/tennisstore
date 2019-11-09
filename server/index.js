@@ -41,5 +41,6 @@ app.put("/api/updateEmail", user.updateEmail);
 app.put("/api/updatePass", user.updatePass);
 
 app.delete("/api/logout", auth.logout);
+app.delete("/api/deletecartitem/:id/:user", inventory.deleteItem);
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));

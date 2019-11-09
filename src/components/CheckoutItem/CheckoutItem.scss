@@ -15,3 +15,11 @@
 	border-radius: 50%;
 	margin-left: 1rem;
 }
+
+.deleteIcon {
+	color: #ccc;
+	&:hover {
+		color: rgb(179, 0, 0);
+		cursor: pointer;
+	}
+}
