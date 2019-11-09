@@ -7,13 +7,13 @@ module.exports = {
 	addToCart: async (req, res) => {
 		const db = req.app.get("db");
 		const { item, user } = req.body;
-		const check = await db.check_cart_for_item({ item, user });
-		let quantity = check.length;
-		if (quantity === 0) {
-			db.add_quantity([user, item]);
-		} else {
-			db.add_one([user, item]);
-		}
+		// const check = await db.check_cart_for_item({ item, user });
+		// let quantity = check.length;
+		// if (quantity === 0) {
+		// 	db.add_quantity([user, item]);
+		// } else {
+		// 	db.add_one([user, item]);
+		// }
 		db.add_to_cart([user, item]);
 		res.sendStatus(200);
 	},
@@ -26,10 +26,10 @@ module.exports = {
 		});
 		res.status(200).send(itemIds);
 	},
-	deleteItem: async (req, res) => {
+	deleteItem: (req, res) => {
 		const db = req.app.get("db");
 		const { id, user } = req.params;
-		await db.delete_from_cart([id, user]);
+		db.delete_from_cart([id, user]);
 
 		res.status(200).send("ok");
 	}

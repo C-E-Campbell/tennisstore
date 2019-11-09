@@ -13,7 +13,8 @@ class Cart extends Component {
 	state = {
 		cartTotal: null,
 		tax: null,
-		sub: null
+		sub: null,
+		newCart: null
 	};
 
 	deleteCartItem = async (id, user) => {
@@ -22,6 +23,7 @@ class Cart extends Component {
 			`/api/getCart/${this.props.user.currentUser.id}`
 		);
 		this.props.getCart(cart.data);
+		console.log("hello");
 	};
 
 	componentDidMount() {
@@ -60,6 +62,10 @@ class Cart extends Component {
 				this.props.cartTotal(total);
 			}
 		}
+	}
+	componentDidUpdate(prevProps) {
+		if (this.props.cart.length !== prevProps.cart.length)
+			this.props.getCart(this.props.user.currentUser.id);
 	}
 	render() {
 		return (

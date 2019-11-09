@@ -1,7 +1,7 @@
 import React from "react";
 import "./App.scss";
 import { Switch, Route } from "react-router-dom";
-
+import { connect } from "react-redux";
 import MensShop from "../pages/MensShop/MensShop";
 import MensClothing from "../pages/MensClothing/MensClothing";
 import MensShoes from "../pages/MensShoes/MensShoes";
@@ -17,7 +17,7 @@ import InventoryItem from "../components/InventoryItem/InventoryItem";
 import Cart from "../pages/Cart/Cart";
 import Profile from "../pages/Profile/Profile";
 
-function App() {
+function App(props) {
 	return (
 		<Switch>
 			<Route component={Home} exact path={"/"} />
@@ -33,9 +33,16 @@ function App() {
 			<Route component={Gear} path={"/gear"} />
 			<Route component={InventoryItem} path={"/store/:id"} />
 			<Route component={Profile} path={"/profile/:id"} />
-			<Route component={Cart} path={"/cart"} />
+			<Route render={() => <Cart cart={props.items.cart} />} path={"/cart"} />
 		</Switch>
 	);
 }
-
-export default App;
+const mapStateToProps = state => {
+	return {
+		items: state.items
+	};
+};
+export default connect(
+	mapStateToProps,
+	null
+)(App);

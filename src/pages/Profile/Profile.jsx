@@ -1,8 +1,12 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import "./Profile.scss";
+import userPhoto from "../../assets/userPhoto.png";
 import { updateEmail, logout, login } from "../../redux/actions";
 import axios from "axios";
+import BasicHeader from "../../components/BasicHeader/BasicHeader";
+import Header from "../../components/Header/Header";
+import Footer from "../../components/Footer/Footer";
 class Profile extends Component {
 	state = {
 		currentPass: "",
@@ -34,63 +38,72 @@ class Profile extends Component {
 	render() {
 		return (
 			<div>
-				{!this.props.user.currentUser ? (
+				{/* {!this.props.user.currentUser ? (
 					<div>
 						<h3>Login</h3>
 						<Link to='/signin'>GO TO LOGIN</Link>
 					</div>
-				) : (
-					<div>
-						<h2>Current Email: {this.props.user.currentUser.email}</h2>
-						<form
-							onSubmit={e => {
-								e.preventDefault();
-								this.updateEmail(
-									this.state.newEmail,
-									this.props.user.currentUser.id
-								);
-							}}
-						>
-							<input
-								value={this.state.newEmail}
-								type='email'
-								onChange={e => {
-									this.setState({ newEmail: e.target.value });
+				) : ( */}
+				<div>
+					<BasicHeader />
+					<Header />
+					<section className='profile-section'>
+						<div className='form-section'>
+							<img src={userPhoto} alt='user-default' />
+							<h2>Current Email: Current Email</h2>
+							<form
+								onSubmit={e => {
+									e.preventDefault();
+									this.updateEmail(
+										this.state.newEmail,
+										this.props.user.currentUser.id
+									);
 								}}
-								placeholder='Enter New Email'
-							/>
-							<button>Update email</button>
-						</form>
-						<form
-							onSubmit={e => {
-								e.preventDefault();
-								this.updatePass(
-									this.state.currentPass,
-									this.state.newPass,
-									this.props.user.currentUser.email
-								);
-							}}
-						>
-							<input
-								value={this.state.currentPass}
-								type='password'
-								onChange={e => {
-									this.setState({ currentPass: e.target.value });
+							>
+								<input
+									value={this.state.newEmail}
+									type='email'
+									onChange={e => {
+										this.setState({ newEmail: e.target.value });
+									}}
+									placeholder='Enter New Email'
+								/>
+								<button>Update email</button>
+							</form>
+							<form
+								className='password-form'
+								onSubmit={e => {
+									e.preventDefault();
+									this.updatePass(
+										this.state.currentPass,
+										this.state.newPass,
+										this.props.user.currentUser.email
+									);
 								}}
-								placeholder='Enter Current Password'
-							/>
-							<input
-								value={this.state.newPass}
-								onChange={e => {
-									this.setState({ newPass: e.target.value });
-								}}
-								type='password'
-								placeholder='Enter New Password'
-							/>
-							<button>Update Password</button>
-						</form>
-					</div>
-				)}
+							>
+								<input
+									value={this.state.currentPass}
+									type='password'
+									onChange={e => {
+										this.setState({ currentPass: e.target.value });
+									}}
+									placeholder='Enter Current Password'
+								/>
+								<input
+									value={this.state.newPass}
+									onChange={e => {
+										this.setState({ newPass: e.target.value });
+									}}
+									type='password'
+									placeholder='Enter New Password'
+								/>
+								<button>Update Password</button>
+							</form>
+						</div>
+					</section>
+				</div>
+				{/* )} */}
+				<Footer />
 			</div>
 		);
 	}

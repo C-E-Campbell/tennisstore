@@ -67,13 +67,7 @@ class InventoryItem extends React.Component {
 						>
 							Add to Cart
 						</button>
-						<button
-							onClick={() => {
-								this.props.history.push("/cart");
-							}}
-						>
-							View Cart
-						</button>
+
 						<button>Add to Favorites</button>
 					</div>
 				</div>
