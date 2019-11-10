@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import styles from "./Cart.module.scss";
-import LoginHeader from "../../components/LoginHeader/LoginHeader";
 import Header from "../../components/Header/Header";
+import BasicHeader from "../../components/BasicHeader/BasicHeader";
 import Footer from "../../components/Footer/Footer";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 import { connect } from "react-redux";
@@ -74,7 +74,7 @@ class Cart extends Component {
 	render() {
 		return (
 			<div>
-				<LoginHeader />
+				<BasicHeader />
 				<Header />
 				{this.props.user.currentUser ? (
 					<div className={styles.cartContainer}>

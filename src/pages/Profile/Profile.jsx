@@ -75,7 +75,7 @@ class Profile extends Component {
 								onSubmit={e => {
 									e.preventDefault();
 									this.updatePass(
-										this.state.currentPass,
+										this.props.user.currentUser.email,
 										this.state.newPass,
 										this.props.user.currentUser.email
 									);

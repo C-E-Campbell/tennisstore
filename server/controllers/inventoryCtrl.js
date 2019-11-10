@@ -31,11 +31,9 @@ module.exports = {
 		const { id, user } = req.params;
 		await db.delete_from_cart([id, user]);
 		const cartItems = await db.get_cart([user]);
-		console.log("cartItem", cartItems);
 		const itemIds = await cartItems.map(item => {
 			return item.item_id;
 		});
-		console.log("itemids", itemIds);
 		res.status(200).send(itemIds);
 	}
 };
