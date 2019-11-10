@@ -55,14 +55,16 @@ class Cart extends Component {
 						return (acc += curr);
 					}, 0);
 				const tax = subTotal * 0.06;
+
 				const total = subTotal * 0.06 + subTotal;
+
 				this.setState({
 					cartItems: mappedCart,
-					cartTotal: total,
-					tax: tax,
-					sub: subTotal
+					cartTotal: total.toFixed(2),
+					tax: tax.toFixed(2),
+					sub: subTotal.toFixed(2)
 				});
-				this.props.cartTotal(total);
+				this.props.cartTotal(total.toFixed(2).replace(".", ""));
 			}
 		}
 	};
@@ -90,12 +92,12 @@ class Cart extends Component {
 										</div>
 										<div>
 											<h3>SALES TAX</h3>
-											<h3>${Math.round(this.state.tax)}</h3>
+											<h3>${this.state.tax}</h3>
 										</div>
 
 										<div>
 											<h3>TOTAL </h3>
-											<h3>${Math.round(this.state.cartTotal)}</h3>
+											<h3>${this.state.cartTotal}</h3>
 										</div>
 									</div>
 
