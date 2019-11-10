@@ -33,6 +33,7 @@ class Profile extends Component {
 			user
 		});
 		await this.props.logout();
+		this.props.history.push("/signin");
 	};
 
 	render() {
@@ -75,7 +76,7 @@ class Profile extends Component {
 								onSubmit={e => {
 									e.preventDefault();
 									this.updatePass(
-										this.props.user.currentUser.email,
+										this.state.currentPass,
 										this.state.newPass,
 										this.props.user.currentUser.email
 									);

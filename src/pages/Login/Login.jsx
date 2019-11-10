@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Login.scss";
 import { login } from "../../redux/actions";
 import { connect } from "react-redux";
-import { Link } from "react-router-dom";
+import BasicHeader from "../../components/BasicHeader/BasicHeader";
 import axios from "axios";
 
 class Login extends Component {
@@ -34,38 +34,39 @@ class Login extends Component {
 
 	render() {
 		return (
-			<section className='register'>
-				<header>
-					<Link to='/'>Home</Link>
-				</header>
-				<div className='register-form'>
-					<h2>Login in to your account</h2>
-					<form
-						onSubmit={e => {
-							this.handleSubmit(e);
-						}}
-						action='submit'
-					>
-						<label>Email</label>
-						<input
-							value={this.state.email}
-							onChange={e => {
-								this.setState({ email: e.target.value });
+			<div>
+				<BasicHeader />
+				<section className='register'>
+					<div className='register-form'>
+						<h2>Login in to your account</h2>
+						<form
+							onSubmit={e => {
+								this.handleSubmit(e);
 							}}
-							type='text'
-						/>
-						<label>Password</label>
-						<input
-							value={this.state.password}
-							onChange={e => {
-								this.setState({ password: e.target.value });
-							}}
-							type='password'
-						/>
-						<button>Login</button>
-					</form>
-				</div>
-			</section>
+							action='submit'
+						>
+							<input
+								placeholder='Enter Email'
+								value={this.state.email}
+								onChange={e => {
+									this.setState({ email: e.target.value });
+								}}
+								type='text'
+							/>
+
+							<input
+								placeholder='Enter Password'
+								value={this.state.password}
+								onChange={e => {
+									this.setState({ password: e.target.value });
+								}}
+								type='password'
+							/>
+							<button>Login</button>
+						</form>
+					</div>
+				</section>
+			</div>
 		);
 	}
 }

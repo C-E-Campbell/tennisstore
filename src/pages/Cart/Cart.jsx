@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./Cart.module.scss";
+
 import Header from "../../components/Header/Header";
 import BasicHeader from "../../components/BasicHeader/BasicHeader";
 import Footer from "../../components/Footer/Footer";
@@ -44,9 +45,7 @@ class Cart extends Component {
 				});
 				return cartStuff;
 			});
-			// this.setState({
-			// 	cartItems: mappedCart
-			// });
+
 			if (this.props.items.cart.length >= 0) {
 				const subTotal = mappedCart
 					.map((item, i) => {
@@ -100,7 +99,7 @@ class Cart extends Component {
 										</div>
 									</div>
 
-									<button>CHECKOUT</button>
+									<Link to='/checkout'>CHECKOUT</Link>
 								</div>
 							</div>
 						</div>
