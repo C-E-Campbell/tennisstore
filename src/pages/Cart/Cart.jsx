@@ -32,9 +32,10 @@ class Cart extends Component {
 	applyDiscount = () => {
 		if (this.state.discount === "15%_MoreHappy!") {
 			const newNum = this.state.cartTotal * 0.85;
-			const newTotal = newNum.toFixed(2);
-			this.setState({ cartTotal: newTotal, discountApplied: true });
-			this.props.cartTotal(this.state.cartTotal);
+			newNum.toFixed(2);
+			this.setState({ cartTotal: newNum, discountApplied: true });
+			this.props.cartTotal(newNum.toFixed(2).replace(".", ""));
+
 			this.props.discountApplied();
 		}
 	};
@@ -124,7 +125,9 @@ class Cart extends Component {
 												<form
 													onSubmit={e => {
 														e.preventDefault();
-														this.applyDiscount(this.state.discount);
+														if (!this.state.discountApplied) {
+															this.applyDiscount(this.state.discount);
+														}
 													}}
 												>
 													<h3>Discount Code: </h3>

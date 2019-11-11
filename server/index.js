@@ -1,17 +1,16 @@
 require("dotenv").config();
+const { PORT, SESSION_STRING, CONNECTION_STRING } = process.env;
 const express = require("express");
-const io = require("socket.io")(8295);
 const massive = require("massive");
 const session = require("express-session");
-const { PORT, SESSION_STRING, CONNECTION_STRING } = process.env;
-const app = express();
 
-//----- Controllers
 const test = require("./controllers/testCtrl");
 const inventory = require("./controllers/inventoryCtrl");
 const auth = require("./controllers/authCtrl");
 const user = require("./controllers/userCtrl");
 const util = require("./controllers/utilCtrl");
+
+const app = express();
 
 massive(CONNECTION_STRING).then(db => {
 	app.set("db", db);
@@ -45,9 +44,5 @@ app.put("/api/updatePass", user.updatePass);
 
 app.delete("/api/logout", auth.logout);
 app.delete("/api/deletecartitem/:id/:user", inventory.deleteItem);
-
-io.on("connection", socket => {
-	socket.emit("Chat-message", "hello");
-});
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
