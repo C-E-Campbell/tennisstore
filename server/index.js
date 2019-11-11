@@ -11,7 +11,7 @@ const test = require("./controllers/testCtrl");
 const inventory = require("./controllers/inventoryCtrl");
 const auth = require("./controllers/authCtrl");
 const user = require("./controllers/userCtrl");
-const stripe = require("./controllers/stripeCtrl");
+const util = require("./controllers/utilCtrl");
 
 massive(CONNECTION_STRING).then(db => {
 	app.set("db", db);
@@ -37,7 +37,8 @@ app.get("/api/getcart/:id", inventory.getCart);
 app.post("/api/register", auth.register);
 app.post("/api/login", auth.login);
 app.post("/api/addtocart", inventory.addToCart);
-app.post("/api/charge", stripe.sendPayment);
+app.post("/api/charge", util.sendPayment);
+app.post("/api/discount", util.sendDiscount);
 
 app.put("/api/updateEmail", user.updateEmail);
 app.put("/api/updatePass", user.updatePass);
