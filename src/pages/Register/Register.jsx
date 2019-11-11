@@ -21,7 +21,7 @@ class Register extends Component {
 			password: this.state.password
 		});
 		this.props.register(registerUser.data);
-		// this.props.history.push("/");
+		this.props.history.push("/");
 	};
 
 	componentWillUnmount() {
