@@ -15,7 +15,9 @@ class Cart extends Component {
 		cartTotal: null,
 		tax: null,
 		sub: null,
-		newCart: null
+		newCart: null,
+		discount: "",
+		discountApplied: false
 	};
 
 	deleteCartItem = async (id, user) => {
@@ -27,8 +29,16 @@ class Cart extends Component {
 		this.getCustomerCart();
 	};
 
+	applyDiscount = () => {
+		if (this.state.discount === "15%_MoreHappy!") {
+			const newNum = this.state.cartTotal * 0.85;
+			const newTotal = newNum.toFixed(2);
+			this.setState({ cartTotal: newTotal, discountApplied: true });
+			this.props.cartTotal(this.state.cartTotal);
+		}
+	};
+
 	getCustomerCart = () => {
-		console.log("hello from cart");
 		if (this.props.user.currentUser) {
 			const mappedCart = this.props.items.cart.map((cartItem, i) => {
 				const filteredItems = this.props.items.inventory.filter(item => {
@@ -85,21 +95,80 @@ class Cart extends Component {
 							<div className={styles.checkoutBox}>
 								<div className={styles.itemBox}>{this.state.cartItems}</div>
 								<div className={styles.subtotalBox}>
-									<div>
+									{this.state.discount === "15%_MoreHappy!" &&
+									this.state.discountApplied === true ? (
 										<div>
-											<h3>SUBTOTAL </h3>
-											<h3>${this.state.sub}</h3>
-										</div>
-										<div>
-											<h3>SALES TAX</h3>
-											<h3>${this.state.tax}</h3>
-										</div>
+											<div>
+												<h3>SUBTOTAL </h3>
+												<h3>${this.state.sub}</h3>
+											</div>
+											<div>
+												<h3>SALES TAX</h3>
+												<h3>${this.state.tax}</h3>
+											</div>
+											<div>
+												<h3>WITH DISCOUNT</h3>
+												<h3>- ${(this.state.cartTotal * 0.15).toFixed(2)}</h3>
+											</div>
 
-										<div>
-											<h3>TOTAL </h3>
-											<h3>${this.state.cartTotal}</h3>
+											<div>
+												<h3>TOTAL </h3>
+												<h3>${this.state.cartTotal}</h3>
+											</div>
+											<div>
+												<form
+													onSubmit={e => {
+														e.preventDefault();
+														this.applyDiscount(this.state.discount);
+													}}
+												>
+													<h3>Discount Code: </h3>
+													<input
+														value={this.state.discount}
+														onChange={e =>
+															this.setState({ discount: e.target.value })
+														}
+														placeholder='Enter code here'
+													/>
+													<button>Apply Discount</button>
+												</form>
+											</div>
 										</div>
-									</div>
+									) : (
+										<div>
+											<div>
+												<h3>SUBTOTAL </h3>
+												<h3>${this.state.sub}</h3>
+											</div>
+											<div>
+												<h3>SALES TAX</h3>
+												<h3>${this.state.tax}</h3>
+											</div>
+
+											<div>
+												<h3>TOTAL </h3>
+												<h3>${this.state.cartTotal}</h3>
+											</div>
+											<div>
+												<form
+													onSubmit={e => {
+														e.preventDefault();
+														this.applyDiscount(this.state.discount);
+													}}
+												>
+													<h3>Discount Code: </h3>
+													<input
+														value={this.state.discount}
+														onChange={e =>
+															this.setState({ discount: e.target.value })
+														}
+														placeholder='Enter code here'
+													/>
+													<button>Apply Discount</button>
+												</form>
+											</div>
+										</div>
+									)}
 
 									<Link to='/checkout'>CHECKOUT</Link>
 								</div>

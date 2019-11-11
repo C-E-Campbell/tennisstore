@@ -1,6 +1,6 @@
 require("dotenv").config();
 const express = require("express");
-
+const io = require("socket.io")(8295);
 const massive = require("massive");
 const session = require("express-session");
 const { PORT, SESSION_STRING, CONNECTION_STRING } = process.env;
@@ -45,5 +45,9 @@ app.put("/api/updatePass", user.updatePass);
 
 app.delete("/api/logout", auth.logout);
 app.delete("/api/deletecartitem/:id/:user", inventory.deleteItem);
+
+io.on("connection", socket => {
+	socket.emit("Chat-message", "hello");
+});
 
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
