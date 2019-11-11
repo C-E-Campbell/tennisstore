@@ -9,6 +9,7 @@ class Email extends React.Component {
 		axios.post("/api/discount", {
 			sendTo: this.state.email
 		});
+		this.setState({ email: "" });
 	};
 	render() {
 		return (
