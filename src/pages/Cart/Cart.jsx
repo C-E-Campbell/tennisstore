@@ -6,7 +6,7 @@ import BasicHeader from "../../components/BasicHeader/BasicHeader";
 import Footer from "../../components/Footer/Footer";
 import CheckoutItem from "../../components/CheckoutItem/CheckoutItem";
 import { connect } from "react-redux";
-import { cartTotal, getCart } from "../../redux/actions";
+import { cartTotal, getCart, discountApplied } from "../../redux/actions";
 import { Link } from "react-router-dom";
 import axios from "axios";
 
@@ -35,6 +35,7 @@ class Cart extends Component {
 			const newTotal = newNum.toFixed(2);
 			this.setState({ cartTotal: newTotal, discountApplied: true });
 			this.props.cartTotal(this.state.cartTotal);
+			this.props.discountApplied();
 		}
 	};
 
@@ -78,8 +79,12 @@ class Cart extends Component {
 			}
 		}
 	};
-	componentDidMount() {
+	async componentDidMount() {
 		this.getCustomerCart();
+		if (this.props.items.discountApplied) {
+			await this.setState({ discount: "15%_MoreHappy!" });
+			await this.applyDiscount();
+		}
 	}
 
 	render() {
@@ -153,7 +158,7 @@ class Cart extends Component {
 												<form
 													onSubmit={e => {
 														e.preventDefault();
-														this.applyDiscount(this.state.discount);
+														this.applyDiscount();
 													}}
 												>
 													<h3>Discount Code: </h3>
@@ -198,7 +203,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = {
 	cartTotal,
-	getCart
+	getCart,
+	discountApplied
 };
 
 export default connect(

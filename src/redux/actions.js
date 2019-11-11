@@ -1,7 +1,7 @@
 import { REGISTER_USER } from "./UserReducer";
 import { LOGIN_USER } from "./UserReducer";
 import { LOGOUT_USER } from "./UserReducer";
-import { GET_INVENTORY } from "./InventoryReducer";
+import { GET_INVENTORY, DISCOUNT_APPLIED } from "./InventoryReducer";
 import { GET_CART } from "./InventoryReducer";
 import { CART_TOTAL } from "./InventoryReducer";
 import { UPDATE_EMAIL } from "./UserReducer";
@@ -39,4 +39,8 @@ export const cartTotal = total => ({
 export const updateEmail = newEmail => ({
 	type: UPDATE_EMAIL,
 	payload: newEmail
+});
+
+export const discountApplied = () => ({
+	type: DISCOUNT_APPLIED
 });
