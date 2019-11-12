@@ -13,20 +13,20 @@ const util = require("./controllers/utilCtrl");
 const app = express();
 
 massive(CONNECTION_STRING).then(db => {
-	app.set("db", db);
-	console.log("db connected");
+  app.set("db", db);
+  console.log("db connected");
 });
 app.use(express.static(`${__dirname}/../build`));
 app.use(express.json());
 app.use(
-	session({
-		secret: SESSION_STRING,
-		resave: true,
-		saveUninitialized: false,
-		cookie: {
-			maxAge: 13452345235623623456326435636
-		}
-	})
+  session({
+    secret: SESSION_STRING,
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 13452345235623623456326435636
+    }
+  })
 );
 
 app.get("/api/test", test.test);
@@ -44,5 +44,8 @@ app.put("/api/updatePass", user.updatePass);
 
 app.delete("/api/logout", auth.logout);
 app.delete("/api/deletecartitem/:id/:user", inventory.deleteItem);
-
+const path = require("path");
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "../build/index.html"));
+});
 app.listen(PORT, () => console.log(`server running on ${PORT}`));
